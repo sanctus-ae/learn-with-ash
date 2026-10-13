@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Little Learners ABC 123</title>
+<title>Learn with Asher</title>
 <style>
 :root{--bg:#fff7e0;--card:#fff;--ink:#3a2e5c;--a:#ff6b6b;--b:#4dabf7;--c:#51cf66;--d:#ffa94d;--sh:rgba(58,46,92,.18);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1f1b34;--card:#2f2a4d;--ink:#fff4d6;--sh:rgba(0,0,0,.4)}}
@@ -60,7 +60,6 @@ canvas{width:100%;background:var(--card);border-radius:28px;box-shadow:0 7px 0 v
 const L=[["A","Apple","🍎"],["B","Ball","⚽"],["C","Cat","🐱"],["D","Dog","🐶"],["E","Elephant","🐘"],["F","Fish","🐟"],["G","Grapes","🍇"],["H","Hat","🎩"],["I","Ice cream","🍦"],["J","Juice","🧃"],["K","Kite","🪁"],["L","Lion","🦁"],["M","Moon","🌙"],["N","Nest","🪺"],["O","Orange","🍊"],["P","Pig","🐷"],["Q","Queen","👑"],["R","Rainbow","🌈"],["S","Sun","☀️"],["T","Tree","🌳"],["U","Umbrella","☂️"],["V","Van","🚐"],["W","Whale","🐳"],["X","Xylophone","🎹"],["Y","Yo-yo","🪀"],["Z","Zebra","🦓"]];
 const LG={
 en:{f:"🇬🇧",v:"en-GB",num:"one two three four five six seven eight nine ten".split(" "),col:"red blue green yellow orange purple".split(" "),shp:"circle square triangle star heart diamond".split(" "),g:"Great job!",a:"Try again",fl:"Find the letter",fn:"Find the number",h:"Let's learn!"},
-ga:{f:"🇮🇪",v:"ga-IE",num:"a haon,a dó,a trí,a ceathair,a cúig,a sé,a seacht,a hocht,a naoi,a deich".split(","),col:"dearg,gorm,glas,buí,oráiste,corcra".split(","),shp:"ciorcal,cearnóg,triantán,réalta,croí,diamant".split(","),g:"Maith thú!",a:"Bain triail eile as",fl:"Aimsigh an litir",fn:"Aimsigh an uimhir",h:"Foghlaimímis!"},
 es:{f:"🇪🇸",v:"es-ES",num:"uno dos tres cuatro cinco seis siete ocho nueve diez".split(" "),col:"rojo azul verde amarillo naranja morado".split(" "),shp:"círculo cuadrado triángulo estrella corazón rombo".split(" "),g:"¡Muy bien!",a:"Inténtalo otra vez",fl:"Encuentra la letra",fn:"Encuentra el número",h:"¡A aprender!"},
 fr:{f:"🇫🇷",v:"fr-FR",num:"un deux trois quatre cinq six sept huit neuf dix".split(" "),col:"rouge bleu vert jaune orange violet".split(" "),shp:"cercle carré triangle étoile cœur losange".split(" "),g:"Bravo !",a:"Réessaie",fl:"Trouve la lettre",fn:"Trouve le chiffre",h:"Apprenons !"},
 de:{f:"🇩🇪",v:"de-DE",num:"eins zwei drei vier fünf sechs sieben acht neun zehn".split(" "),col:"rot blau grün gelb orange lila".split(" "),shp:"Kreis Quadrat Dreieck Stern Herz Raute".split(" "),g:"Super!",a:"Versuch es nochmal",fl:"Finde den Buchstaben",fn:"Finde die Zahl",h:"Los geht's!"}};
@@ -88,7 +87,7 @@ const hdr=t=>`<header><button class="back" onclick="go('home')">🏠</button><h1
 function go(s){screen=s;gate=false;if(s==="play")newQ();if(s==="parent")gq={a:3+Math.random()*6|0,b:3+Math.random()*6|0};if(s==="trace"){ti=0}render();if(s==="home")say(T().h);if(s==="abc")sayL();if(s==="num")sayN()}
 function setLg(k){lg=k;S.lg=k;save();render();say(T().h)}
 function render(){
-if(screen==="home"){$.innerHTML=`<header><h1>Little Learners</h1><button class="pill" onclick="go('parent')">👨‍👩‍👧</button></header>
+if(screen==="home"){$.innerHTML=`<header><h1>Learn with Asher</h1><button class="pill" onclick="go('parent')">👨‍👩‍👧</button></header>
 <div class="strip lang">${Object.keys(LG).map(k=>`<button class="${k===lg?'on':''}" onclick="setLg('${k}')">${LG[k].f}</button>`).join("")}</div>
 <div class="grid"><button class="big" style="background:var(--a)" onclick="go('abc')"><span>🔤</span>ABC</button>
 <button class="big" style="background:var(--b)" onclick="go('num')"><span>🔢</span>123</button>
@@ -109,7 +108,7 @@ else if(screen==="trace"){$.innerHTML=hdr("✏️")+`<div class="strip wide"><bu
 <div class="row"><button class="nav" onclick="stepT(-1)">⬅️</button><button class="nav" onclick="guide()">🧹</button><button class="nav" onclick="doneT()">✅</button><button class="nav" onclick="stepT(1)">➡️</button></div>`;setupCv()}
 else if(screen==="play"){$.innerHTML=hdr("🎮")+`<div class="q" onclick="askQ()">🔊 ${ans.text}</div><div class="choices">${ans.opts.map(o=>`<button class="tile" style="color:${COL[(o.length+o.charCodeAt(0))%6]}" onclick="pick(this,'${o}')">${o}</button>`).join("")}</div>`}
 else if(screen==="parent"){$.innerHTML=hdr("👨‍👩‍👧")+(gate?`<div class="tile stat">⭐ Stars: <b>${S.stars}</b><br>🔤 Letters visited: <b>${Object.keys(S.l).length}/26</b><br>🔢 Numbers counted: <b>${Object.keys(S.n).length}/10</b><br>🎨 Colours &amp; shapes: <b>${Object.keys(S.s).length}/12</b><br>✏️ Tracings done: <b>${S.tr}</b><br>🎮 Quiz: <b>${S.qc}/${S.qa}</b> correct</div>
-<p class="hint">Voices use your device's built-in speech. Irish (ga-IE) may need to be installed in your device's language settings.</p>
+<p class="hint">Voices use your device's built-in speech.</p>
 <button class="back" onclick="if(confirm('Reset all progress?')){Object.assign(S,{stars:0,l:{},n:{},s:{},qa:0,qc:0,tr:0});save();render()}">Reset progress</button>`:
 `<div class="tile"><div class="q">Grown-ups only:<br>${gq.a} + ${gq.b} = ?</div><p><input id="gi" type="number" inputmode="numeric" style="font:inherit;font-size:30px;width:110px;text-align:center;border-radius:14px;border:2px solid var(--ink);background:var(--bg);color:var(--ink)"> <button class="back" onclick="chk()">OK</button></p></div>`)}}
 function chk(){if(+document.getElementById("gi").value===gq.a+gq.b){gate=true;render()}else toast("❌")}
