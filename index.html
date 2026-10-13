@@ -3,12 +3,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Learn with Asher</title>
 <style>
-:root{--bg:#fff7e0;--card:#fff;--ink:#3a2e5c;--a:#ff6b6b;--b:#4dabf7;--c:#51cf66;--d:#ffa94d;--sh:rgba(58,46,92,.18);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1f1b34;--card:#2f2a4d;--ink:#fff4d6;--sh:rgba(0,0,0,.4)}}
-:root[data-theme="dark"]{--bg:#1f1b34;--card:#2f2a4d;--ink:#fff4d6;--sh:rgba(0,0,0,.4)}
+:root{--sky:linear-gradient(180deg,#a8defc 0%,#dff4ff 50%,#fff1b8 100%);--bg:#fff7e0;--card:#fff;--ink:#3a2e5c;--a:#ff6b6b;--b:#4dabf7;--c:#51cf66;--d:#ffa94d;--sh:rgba(58,46,92,.18);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky:linear-gradient(180deg,#1b1740,#2f2766 60%,#463a80);--bg:#1f1b34;--card:#2f2a4d;--ink:#fff4d6;--sh:rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--sky:linear-gradient(180deg,#1b1740,#2f2766 60%,#463a80);--bg:#1f1b34;--card:#2f2a4d;--ink:#fff4d6;--sh:rgba(0,0,0,.4)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;margin:0}
-body{background:var(--bg);color:var(--ink);font-family:"Baloo 2","Comic Sans MS","Chalkboard SE",system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;user-select:none}
+body{background:var(--sky) fixed;color:var(--ink);font-family:"Baloo 2","Comic Sans MS","Chalkboard SE",system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;user-select:none}
 #app{width:100%;max-width:520px;flex:1;display:flex;flex-direction:column;padding:12px 16px 16px;gap:12px;overflow-y:auto}
 header{display:flex;justify-content:space-between;align-items:center;min-height:48px}
 h1{font-size:26px;margin:0}
@@ -45,7 +45,7 @@ button{font:inherit;color:inherit;border:0;cursor:pointer}
 .dot{width:60px;height:60px;border-radius:50%;margin:0 auto 2px}
 .gl{font-size:60px;line-height:1.1}
 canvas{width:100%;background:var(--card);border-radius:28px;box-shadow:0 7px 0 var(--sh);touch-action:none}
-.stat{font-size:22px;line-height:1.7;text-align:left}
+#bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}#bg span{position:absolute;font-size:36px;opacity:.6;animation:drift 12s ease-in-out infinite alternate}@keyframes drift{to{transform:translateY(-34px) rotate(14deg)}}#app{position:relative;z-index:1}.stat{font-size:22px;line-height:1.7;text-align:left}.tile.on{outline:5px solid var(--d)}.sg2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.gp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}.gb div{font-size:26px;font-weight:700}.who{display:flex;align-items:center;gap:10px;justify-content:center;padding:8px;font-size:22px;border-radius:28px}.nmi{font:inherit;font-size:28px;width:100%;text-align:center;border-radius:16px;border:3px solid var(--ink);background:var(--bg);color:var(--ink);padding:8px}
 .toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:20px;z-index:10;font-size:18px}
 .shake{animation:sh .4s}
 @keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
@@ -55,7 +55,7 @@ canvas{width:100%;background:var(--card);border-radius:28px;box-shadow:0 7px 0 v
 @keyframes fly{to{transform:translateY(-160px) rotate(360deg);opacity:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style></head><body>
-<div id="app"></div>
+<div id="bg" aria-hidden="true"><span style="left:5%;top:8%;animation-delay:-0.0s">☁️</span><span style="left:78%;top:6%;animation-delay:-1.3s">⭐</span><span style="left:88%;top:30%;animation-delay:-2.6s">🎈</span><span style="left:6%;top:40%;animation-delay:-3.9000000000000004s">🦋</span><span style="left:70%;top:52%;animation-delay:-5.2s">🌼</span><span style="left:12%;top:70%;animation-delay:-6.5s">🌈</span><span style="left:84%;top:76%;animation-delay:-7.800000000000001s">🐥</span><span style="left:40%;top:88%;animation-delay:-9.1s">🍭</span><span style="left:45%;top:4%;animation-delay:-10.4s">☁️</span><span style="left:30%;top:60%;animation-delay:-11.700000000000001s">⭐</span></div><div id="app"></div>
 <script>
 const L=[["A","Apple","🍎"],["B","Ball","⚽"],["C","Cat","🐱"],["D","Dog","🐶"],["E","Elephant","🐘"],["F","Fish","🐟"],["G","Grapes","🍇"],["H","Hat","🎩"],["I","Ice cream","🍦"],["J","Juice","🧃"],["K","Kite","🪁"],["L","Lion","🦁"],["M","Moon","🌙"],["N","Nest","🪺"],["O","Orange","🍊"],["P","Pig","🐷"],["Q","Queen","👑"],["R","Rainbow","🌈"],["S","Sun","☀️"],["T","Tree","🌳"],["U","Umbrella","☂️"],["V","Van","🚐"],["W","Whale","🐳"],["X","Xylophone","🎹"],["Y","Yo-yo","🪀"],["Z","Zebra","🦓"]];
 const LG={
@@ -68,14 +68,14 @@ const COL=["#ff6b6b","#4dabf7","#51cf66","#ffa94d","#cc5de8","#20c997"];
 const HEX=["#e03131","#1c7ed6","#2f9e44","#fcc419","#fd7e14","#9c36b6"];
 const SH=["●","■","▲","★","♥","◆"];
 const S={stars:0,lg:"en",l:{},n:{},s:{},qa:0,qc:0,tr:0};
-try{Object.assign(S,JSON.parse(localStorage.getItem("ll")||"{}"))}catch(e){}
-const save=()=>{try{localStorage.setItem("ll",JSON.stringify(S))}catch(e){}};
-let lg=LG[S.lg]?S.lg:"en",screen="home",li=0,ni=0,ti=0,tm="L",count=0,ans=null,ac,voices=[],gate=false,gq={},drawing=false,last;
-const T=()=>LG[lg];
+const P={list:[],cur:null};try{Object.assign(P,JSON.parse(localStorage.getItem('llp')||'{}'))}catch(e){}const saveP=()=>{try{localStorage.setItem('llp',JSON.stringify(P))}catch(e){}};const key=()=>P.cur?'ll_'+P.cur:'ll';function loadS(){Object.assign(S,{stars:0,lg:'en',l:{},n:{},s:{},qa:0,qc:0,tr:0});try{Object.assign(S,JSON.parse(localStorage.getItem(key())||'{}'))}catch(e){}}loadS();
+const save=()=>{try{localStorage.setItem(key(),JSON.stringify(S))}catch(e){}};
+let lg=LG[S.lg]?S.lg:"en",screen=P.cur?"home":"who",adding=!P.list.length,pg=0,li=0,ni=0,ti=0,tm="L",count=0,ans=null,ac,voices=[],gate=false,gq={},drawing=false,last;
+const T=()=>LG[lg];const EN={A:"ay",B:"bee",C:"see",D:"dee",E:"ee",F:"eff",G:"jee",H:"aitch",I:"eye",J:"jay",K:"kay",L:"ell",M:"em",N:"en",O:"oh",P:"pee",Q:"cue",R:"are",S:"ess",T:"tee",U:"you",V:"vee",W:"double you",X:"ex",Y:"why",Z:"zed"};const nm=l=>lg==="en"&&EN[l]?EN[l]:l;
 const $=document.getElementById("app");
 const loadV=()=>{try{voices=speechSynthesis.getVoices()}catch(e){}};loadV();try{speechSynthesis.onvoiceschanged=loadV}catch(e){}
 function toast(t){const d=document.createElement("div");d.className="toast";d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2500)}
-function say(t){try{const code=T().v,pre=code.slice(0,2),n=x=>x.lang.replace("_","-").toLowerCase();
+function say(t,c){try{const code=c||T().v,pre=code.slice(0,2),n=x=>x.lang.replace("_","-").toLowerCase();
 const vo=voices.find(x=>n(x)===code.toLowerCase())||voices.find(x=>n(x).startsWith(pre));
 if(voices.length&&!vo&&pre!=="en"){toast("🔇 No voice for this language on this device");return}
 speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=.8;u.pitch=1.3;u.lang=code;if(vo)u.voice=vo;speechSynthesis.speak(u)}catch(e){}}
@@ -84,11 +84,11 @@ const ding=()=>[523,659,784].forEach((f,i)=>tone(f,.2,i*.12));
 const boop=()=>tone(200,.25);
 function burst(){for(let i=0;i<10;i++){const s=document.createElement("div");s.className="star";s.textContent=["⭐","✨","🎉"][i%3];s.style.left=(10+Math.random()*80)+"vw";s.style.top=(40+Math.random()*30)+"vh";document.body.appendChild(s);setTimeout(()=>s.remove(),1300)}}
 const hdr=t=>`<header><button class="back" onclick="go('home')">🏠</button><h1>${t}</h1><div class="pill">⭐ ${S.stars}</div></header>`;
-function go(s){screen=s;gate=false;if(s==="play")newQ();if(s==="parent")gq={a:3+Math.random()*6|0,b:3+Math.random()*6|0};if(s==="trace"){ti=0}render();if(s==="home")say(T().h);if(s==="abc")sayL();if(s==="num")sayN()}
+function go(s){screen=s;gate=false;if(s==="who")adding=!P.list.length;if(s==="play")newQ();if(s==="parent")gq={a:3+Math.random()*6|0,b:3+Math.random()*6|0};if(s==="trace"){ti=0}render();}
 function setLg(k){lg=k;S.lg=k;save();render();say(T().h)}
 function render(){
 if(screen==="home"){$.innerHTML=`<header><h1>Learn with Asher</h1><button class="pill" onclick="go('parent')">👨‍👩‍👧</button></header>
-<div class="strip lang">${Object.keys(LG).map(k=>`<button class="${k===lg?'on':''}" onclick="setLg('${k}')">${LG[k].f}</button>`).join("")}</div>
+${me()?`<button class='tile who' onclick="go('who')">${av(me().g,44)}<b>Hi ${esc(me().n)}!</b><span>🔄</span></button>`:''}<div class="strip lang">${Object.keys(LG).map(k=>`<button class="${k===lg?'on':''}" onclick="setLg('${k}')">${LG[k].f}</button>`).join("")}</div>
 <div class="grid"><button class="big" style="background:var(--a)" onclick="go('abc')"><span>🔤</span>ABC</button>
 <button class="big" style="background:var(--b)" onclick="go('num')"><span>🔢</span>123</button>
 <button class="big" style="background:#cc5de8" onclick="go('shapes')"><span>🎨</span>●■▲</button>
@@ -97,26 +97,35 @@ if(screen==="home"){$.innerHTML=`<header><h1>Learn with Asher</h1><button class=
 else if(screen==="abc"){const[l,w,p]=L[li];$.innerHTML=hdr("ABC")+`<button class="tile pop" onclick="sayL()" style="color:${COL[li%6]}"><div class="letter">${l}${l.toLowerCase()}</div><div class="pic">${p}</div>${lg==="en"?`<div class="word">${l} is for ${w}</div>`:""}</button>
 <div class="row"><button class="nav" onclick="stepL(-1)">⬅️</button><button class="nav" onclick="sayL()">🔊</button><button class="nav" onclick="stepL(1)">➡️</button></div>
 <div class="strip">${L.map((x,i)=>`<button class="${i===li?'on':''}" onclick="li=${i};render();sayL()">${x[0]}</button>`).join("")}</div>`}
-else if(screen==="num"){count=0;$.innerHTML=hdr("123")+`<div class="tile pop"><div class="numeral" style="color:${COL[ni%6]}" onclick="sayN()">${ni+1}</div><div class="word">${T().num[ni]}</div></div>
-<div class="items">${Array.from({length:ni+1},()=>`<button onclick="cnt(this)">${E[ni]}</button>`).join("")}</div>
+else if(screen==="num"){count=0;$.innerHTML=hdr("123")+`<div class="tile pop"><div class="numeral" style="color:${COL[ni%6]};font-size:${ni>998?64:ni>98?90:120}px" onclick="sayN()">${ni+1}</div><div class="word">${ni<10?T().num[ni]:"&nbsp;"}</div></div>
+<div class="items">${Array.from({length:ni<20?ni+1:0},()=>`<button onclick="cnt(this)">${E[ni%10]}</button>`).join("")}</div>
 <p class="hint">👆 1, 2, 3 …</p>
-<div class="row"><button class="nav" onclick="stepN(-1)">⬅️</button><button class="nav" onclick="sayN()">🔊</button><button class="nav" onclick="stepN(1)">➡️</button></div>`}
+<div class="row"><button class="nav" onclick="stepN(-1)">⬅️</button><button class="nav" onclick="sayN()">🔊</button><button class="nav" onclick="stepN(1)">➡️</button><button class="nav" onclick="stepN(10)">⏩</button></div>`}
 else if(screen==="shapes"){$.innerHTML=hdr("🎨")+`<div class="sg">${HEX.map((h,i)=>`<button class="tile" onclick="sayX('c',${i},T().col[${i}])"><div class="dot" style="background:${h}"></div>${T().col[i]}</button>`).join("")}</div>
 <div class="sg">${SH.map((g,i)=>`<button class="tile" onclick="sayX('s',${i},T().shp[${i}])" style="color:${COL[i]}"><div class="gl">${g}</div>${T().shp[i]}</button>`).join("")}</div>`}
 else if(screen==="trace"){$.innerHTML=hdr("✏️")+`<div class="strip wide"><button class="${tm==='L'?'on':''}" onclick="tmode('L')">Aa</button><button class="${tm==='N'?'on':''}" onclick="tmode('N')">123</button></div>
 <canvas id="cv" width="460" height="320"></canvas>
 <div class="row"><button class="nav" onclick="stepT(-1)">⬅️</button><button class="nav" onclick="guide()">🧹</button><button class="nav" onclick="doneT()">✅</button><button class="nav" onclick="stepT(1)">➡️</button></div>`;setupCv()}
 else if(screen==="play"){$.innerHTML=hdr("🎮")+`<div class="q" onclick="askQ()">🔊 ${ans.text}</div><div class="choices">${ans.opts.map(o=>`<button class="tile" style="color:${COL[(o.length+o.charCodeAt(0))%6]}" onclick="pick(this,'${o}')">${o}</button>`).join("")}</div>`}
-else if(screen==="parent"){$.innerHTML=hdr("👨‍👩‍👧")+(gate?`<div class="tile stat">⭐ Stars: <b>${S.stars}</b><br>🔤 Letters visited: <b>${Object.keys(S.l).length}/26</b><br>🔢 Numbers counted: <b>${Object.keys(S.n).length}/10</b><br>🎨 Colours &amp; shapes: <b>${Object.keys(S.s).length}/12</b><br>✏️ Tracings done: <b>${S.tr}</b><br>🎮 Quiz: <b>${S.qc}/${S.qa}</b> correct</div>
+else if(screen==="who"){const bk=P.cur?`<button class='back' onclick="go('home')">🏠</button>`:'<span></span>';$.innerHTML=`<header>${bk}<h1>Who is playing?</h1><span></span></header>`+(adding?`<div class='tile'>${P.list.length?`<button class='back' onclick='adding=false;pg=0;render()'>⬅️</button>`:''}<p><input id='nm' class='nmi' maxlength='14' placeholder='✏️ Name' autocomplete='off'></p><div class='q'>I am a…</div><div class='gp'><button class='tile gb' data-g='boy' onclick='setG(this.dataset.g)'>${av('boy',90)}<div>Boy</div></button><button class='tile gb' data-g='girl' onclick='setG(this.dataset.g)'>${av('girl',90)}<div>Girl</div></button></div><button class='big' style='background:var(--c);justify-content:center' onclick='addP()'>✅ OK</button></div>`:`<div class='sg2'>${P.list.map(p=>`<button class='tile ${p.id===P.cur?'on':''}' data-id='${p.id}' onclick='pickP(this.dataset.id)'>${av(p.g,90)}<div class='word'>${esc(p.n)}</div></button>`).join('')}<button class='tile' onclick='adding=true;pg=0;render()'><div class='gl'>➕</div></button></div>`)}
+else if(screen==="parent"){$.innerHTML=hdr("👨‍👩‍👧")+(gate?`<div class="tile stat">⭐ Stars: <b>${S.stars}</b><br>🔤 Letters visited: <b>${Object.keys(S.l).length}/26</b><br>🔢 Numbers counted: <b>${Object.keys(S.n).length}</b><br>🎨 Colours &amp; shapes: <b>${Object.keys(S.s).length}/12</b><br>✏️ Tracings done: <b>${S.tr}</b><br>🎮 Quiz: <b>${S.qc}/${S.qa}</b> correct</div>
 <p class="hint">Voices use your device's built-in speech.</p>
-<button class="back" onclick="if(confirm('Reset all progress?')){Object.assign(S,{stars:0,l:{},n:{},s:{},qa:0,qc:0,tr:0});save();render()}">Reset progress</button>`:
+<button class="back" onclick="if(confirm('Reset all progress?')){Object.assign(S,{stars:0,l:{},n:{},s:{},qa:0,qc:0,tr:0});save();render()}">Reset progress</button> <button class="back" onclick="delP()">🗑️ Remove player</button>`:
 `<div class="tile"><div class="q">Grown-ups only:<br>${gq.a} + ${gq.b} = ?</div><p><input id="gi" type="number" inputmode="numeric" style="font:inherit;font-size:30px;width:110px;text-align:center;border-radius:14px;border:2px solid var(--ink);background:var(--bg);color:var(--ink)"> <button class="back" onclick="chk()">OK</button></p></div>`)}}
+const me=()=>P.list.find(p=>p.id===P.cur);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+const av=(g,s)=>{const f=g==='girl';return `<svg width='${s}' height='${s}' viewBox='0 0 100 100' aria-hidden='true'><circle cx='50' cy='50' r='48' fill='${f?'#ff8fab':'#4dabf7'}'/>${f?`<circle cx='17' cy='52' r='11' fill='#6b3f2a'/><circle cx='83' cy='52' r='11' fill='#6b3f2a'/>`:''}<circle cx='50' cy='55' r='28' fill='#ffd9b8'/><path d='M22 52a28 28 0 0 1 56 0c-10-8-46-8-56 0z' fill='${f?'#6b3f2a':'#3b2a1a'}'/><circle cx='40' cy='58' r='3.5' fill='#333'/><circle cx='60' cy='58' r='3.5' fill='#333'/><path d='M42 69q8 7 16 0' stroke='#c0392b' stroke-width='3' fill='none' stroke-linecap='round'/></svg>`};
+function setG(g){pg=g;document.querySelectorAll('.gb').forEach(b=>b.classList.toggle('on',b.dataset.g===g))}
+const sw=()=>{lg=LG[S.lg]?S.lg:'en'};
+function addP(){const n=document.getElementById('nm').value.trim();if(!n){toast('✏️ Name?');return}if(!pg){toast('👦 👧 ?');return}const first=!P.list.length;if(!first)save();const id='p'+Date.now().toString(36);P.list.push({id,n,g:pg});P.cur=id;saveP();if(first){save();try{localStorage.removeItem('ll')}catch(e){}}else{loadS();sw()}adding=false;pg=0;screen='home';render();say('Hi '+n+'!')}
+function pickP(id){save();P.cur=id;saveP();loadS();sw();screen='home';render();say('Hi '+me().n+'!')}
+function delP(){if(!confirm('Remove this player?'))return;try{localStorage.removeItem(key())}catch(e){}P.list=P.list.filter(p=>p.id!==P.cur);P.cur=P.list.length?P.list[0].id:null;saveP();loadS();sw();adding=!P.cur;screen='who';gate=false;render()}
 function chk(){if(+document.getElementById("gi").value===gq.a+gq.b){gate=true;render()}else toast("❌")}
-function sayL(){const[l,w]=L[li];S.l[li]=1;save();say(lg==="en"?`${l} is for ${w}`:l);tone(440+li*10,.1)}
+function sayL(){const[l,w]=L[li];S.l[li]=1;save();say(lg==="en"?`${nm(l)} is for ${w}`:l);tone(440+li*10,.1)}
 function stepL(d){li=(li+d+26)%26;render();sayL()}
-function sayN(){say(`${ni+1}. ${T().num[ni]}`);tone(400+ni*40,.12)}
-function stepN(d){ni=(ni+d+10)%10;render();sayN()}
-function cnt(b){if(b.classList.contains("hit"))return;count++;b.classList.add("hit");say(String(count));tone(400+count*50,.12);if(count===ni+1){setTimeout(()=>{ding();burst();say(`${T().num[ni]}! ${T().g}`);S.stars++;S.n[ni]=1;save()},500)}}
+function sayN(){say(ni<10?T().num[ni]:String(ni+1));tone(400+ni*40,.12)}
+function stepN(d){ni=Math.max(0,ni+d);render();sayN()}
+function cnt(b){if(b.classList.contains("hit"))return;count++;b.classList.add("hit");say(count<=10?T().num[count-1]:String(count));tone(400+count*50,.12);if(count===ni+1){setTimeout(()=>{ding();burst();say(`${ni<10?T().num[ni]:ni+1}! ${T().g}`);S.stars++;S.n[ni]=1;save()},500)}}
 function sayX(k,i,t){S.s[k+i]=1;save();say(t);tone(500+i*60,.12)}
 const tg=()=>tm==="L"?L[ti][0]:String(ti+1);
 function guide(){const c=document.getElementById("cv"),x=c.getContext("2d"),g=tg();x.clearRect(0,0,c.width,c.height);x.font=`800 ${g.length>1?200:270}px "Baloo 2","Comic Sans MS",system-ui,sans-serif`;x.textAlign="center";x.textBaseline="middle";x.fillStyle="rgba(128,128,128,.18)";x.fillText(g,230,170);x.setLineDash([14,12]);x.lineWidth=4;x.strokeStyle="rgba(128,128,128,.7)";x.strokeText(g,230,170);x.setLineDash([])}
@@ -127,11 +136,11 @@ c.onpointermove=e=>{if(!drawing)return;const q=p(e);x.strokeStyle=COL[ti%6];x.li
 c.onpointerup=c.onpointercancel=()=>{drawing=false}}
 function tmode(m){tm=m;ti=0;render();sayT()}
 function stepT(d){const n=tm==="L"?26:10;ti=(ti+d+n)%n;render();sayT()}
-function sayT(){say(tm==="L"?tg():T().num[ti])}
+function sayT(){say(tm==="L"?nm(tg()):T().num[ti])}
 function doneT(){ding();burst();say(T().g);S.stars++;S.tr++;save();document.querySelector(".pill").textContent="⭐ "+S.stars}
 function newQ(){const isL=Math.random()<.5;let t,pool;if(isL){pool=L.map(x=>x[0]);t=pool[Math.random()*26|0]}else{pool=T().num.map((_,i)=>String(i+1));t=pool[Math.random()*10|0]}
 const opts=[t];while(opts.length<4){const o=pool[Math.random()*pool.length|0];if(!opts.includes(o))opts.push(o)}
-opts.sort(()=>Math.random()-.5);const pre=isL?T().fl:T().fn;ans={t,opts,text:`${pre} ${t}`,spoken:isL?`${pre} ${t}`:`${pre} ${T().num[t-1]}`};setTimeout(askQ,300)}
+opts.sort(()=>Math.random()-.5);const pre=isL?T().fl:T().fn;ans={t,opts,text:`${pre} ${t}`,spoken:isL?`${pre} ${nm(t)}`:`${pre} ${T().num[t-1]}`};setTimeout(askQ,300)}
 function askQ(){say(ans.spoken)}
 function pick(b,o){S.qa++;if(o===ans.t){S.qc++;S.stars++;save();ding();burst();say(T().g);b.classList.add("pop");setTimeout(()=>{newQ();render()},1400)}else{save();boop();b.classList.add("shake");say(T().a);setTimeout(()=>b.classList.remove("shake"),500)}}
 render();
