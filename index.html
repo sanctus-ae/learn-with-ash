@@ -112,7 +112,7 @@ else if(screen==="parent"){$.innerHTML=hdr("👨‍👩‍👧")+(gate?`<div cla
 <button class="back" onclick="if(confirm('Reset all progress?')){Object.assign(S,{stars:0,l:{},n:{},s:{},qa:0,qc:0,tr:0});save();render()}">Reset progress</button>`:
 `<div class="tile"><div class="q">Grown-ups only:<br>${gq.a} + ${gq.b} = ?</div><p><input id="gi" type="number" inputmode="numeric" style="font:inherit;font-size:30px;width:110px;text-align:center;border-radius:14px;border:2px solid var(--ink);background:var(--bg);color:var(--ink)"> <button class="back" onclick="chk()">OK</button></p></div>`)}}
 function chk(){if(+document.getElementById("gi").value===gq.a+gq.b){gate=true;render()}else toast("❌")}
-function sayL(){const[l,w]=L[li];S.l[li]=1;save();say(lg==="en"?`${l}. ${l} is for ${w}`:l);tone(440+li*10,.1)}
+function sayL(){const[l,w]=L[li];S.l[li]=1;save();say(lg==="en"?`${l} is for ${w}`:l);tone(440+li*10,.1)}
 function stepL(d){li=(li+d+26)%26;render();sayL()}
 function sayN(){say(`${ni+1}. ${T().num[ni]}`);tone(400+ni*40,.12)}
 function stepN(d){ni=(ni+d+10)%10;render();sayN()}
